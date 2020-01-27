@@ -1,0 +1,36 @@
+/dts-v1/;
+/ {
+	description = "FIT image with single Linux kernel, FDT blob";
+	#address-cells = <1>;
+
+	images {
+		kernel@0 {
+			description = "ARM64 Linux kernel";
+			data = /incbin/("./Image.gz");
+			type = "kernel";
+			arch = "arm64";
+			os = "linux";
+			compression = "gzip";
+			load = <0x50080000>;
+			entry = <0x50080000>;
+		};
+
+		fdt@0 {
+			description = "ROC-RK3399-PC Devicetree blob";
+			data = /incbin/("./rk3399-roc-pc.dtb");
+			type = "flat_dt";
+			arch = "arm64";
+			compression = "none";
+		};
+	};
+
+	configurations {
+		default = "conf@0";
+
+		conf@0 {
+			description = "Boot Linux kernel, FDT blob";
+			kernel = "kernel@0";
+			fdt = "fdt@0";
+		};
+	};
+};

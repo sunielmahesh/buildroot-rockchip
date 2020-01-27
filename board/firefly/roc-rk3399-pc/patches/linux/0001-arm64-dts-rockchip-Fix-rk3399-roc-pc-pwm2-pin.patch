@@ -1,0 +1,43 @@
+From 4e60fe377fefb150e1e55f79149fa9894c8ec9b1 Mon Sep 17 00:00:00 2001
+From: Jagan Teki <jagan@amarulasolutions.com>
+Date: Wed, 29 Jan 2020 14:27:30 +0100
+Subject: [PATCH] arm64: dts: rockchip: Fix rk3399-roc-pc pwm2 pin
+
+ROC-PC is not able to boot linux console if PWM2_d is
+unattached to any pinctrl logic.
+
+To be precise the linux boot hang with last logs as,
+...
+.....
+[    0.003367] Console: colour dummy device 80x25
+[    0.003788] printk: console [tty0] enabled
+[    0.004178] printk: bootconsole [uart8250] disabled
+
+In ROC-PC the PWM2_d pin is connected to LOG_DVS_PWM of
+VDD_LOG. So, for normal working operations this needs to
+active and pull-down.
+
+This patch fix, by attaching pinctrl active and pull-down
+the pwm2.
+
+Signed-off-by: Jagan Teki <jagan@amarulasolutions.com>
+---
+ arch/arm64/boot/dts/rockchip/rk3399-roc-pc.dtsi | 2 ++
+ 1 file changed, 2 insertions(+)
+
+diff --git a/arch/arm64/boot/dts/rockchip/rk3399-roc-pc.dtsi b/arch/arm64/boot/dts/rockchip/rk3399-roc-pc.dtsi
+index 7e07dae33..19d12bdb0 100644
+--- a/arch/arm64/boot/dts/rockchip/rk3399-roc-pc.dtsi
++++ b/arch/arm64/boot/dts/rockchip/rk3399-roc-pc.dtsi
+@@ -635,6 +635,8 @@
+ };
+ 
+ &pwm2 {
++	pinctrl-names = "active";
++	pinctrl-0 = <&pwm2_pin_pull_down>;
+ 	status = "okay";
+ };
+ 
+-- 
+2.17.1
+
