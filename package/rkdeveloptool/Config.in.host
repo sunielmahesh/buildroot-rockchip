@@ -1,0 +1,7 @@
+config BR2_PACKAGE_HOST_RKDEVELOPTOOL
+	bool "host rkdeveloptool"
+	help
+	  rkdeveloptool gives you a simple way to read/write
+	  rockusb device.
+
+	  Source: https://github.com/rockchip-linux/rkdeveloptool
