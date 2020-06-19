@@ -1,0 +1,47 @@
+From 2810dc949156a0ec996b5135bf9047b68ef0e276 Mon Sep 17 00:00:00 2001
+From: Suniel Mahesh <sunil@amarulasolutions.com>
+Date: Mon, 8 Jun 2020 18:55:59 +0530
+Subject: [PATCH] arm64: defconfig: Compile in PCIE, NVME instead of Loadable
+ modules
+
+Compile in PCIE, NVME as part of kernel instead of Loadable modules
+
+Signed-off-by: Suniel Mahesh <sunil@amarulasolutions.com>
+---
+ arch/arm64/configs/defconfig | 6 +++---
+ 1 file changed, 3 insertions(+), 3 deletions(-)
+
+diff --git a/arch/arm64/configs/defconfig b/arch/arm64/configs/defconfig
+index 33147f5..e299f4e 100644
+--- a/arch/arm64/configs/defconfig
++++ b/arch/arm64/configs/defconfig
+@@ -189,7 +189,7 @@ CONFIG_PCIE_ALTERA=y
+ CONFIG_PCIE_ALTERA_MSI=y
+ CONFIG_PCI_HOST_THUNDER_PEM=y
+ CONFIG_PCI_HOST_THUNDER_ECAM=y
+-CONFIG_PCIE_ROCKCHIP_HOST=m
++CONFIG_PCIE_ROCKCHIP_HOST=y
+ CONFIG_PCI_LAYERSCAPE=y
+ CONFIG_PCI_HISI=y
+ CONFIG_PCIE_QCOM=y
+@@ -214,7 +214,7 @@ CONFIG_SPI_CADENCE_QUADSPI=y
+ CONFIG_BLK_DEV_LOOP=y
+ CONFIG_BLK_DEV_NBD=m
+ CONFIG_VIRTIO_BLK=y
+-CONFIG_BLK_DEV_NVME=m
++CONFIG_BLK_DEV_NVME=y
+ CONFIG_SRAM=y
+ CONFIG_EEPROM_AT25=m
+ # CONFIG_SCSI_PROC_FS is not set
+@@ -793,7 +793,7 @@ CONFIG_PHY_RCAR_GEN3_USB3=m
+ CONFIG_PHY_ROCKCHIP_EMMC=y
+ CONFIG_PHY_ROCKCHIP_INNO_HDMI=m
+ CONFIG_PHY_ROCKCHIP_INNO_USB2=y
+-CONFIG_PHY_ROCKCHIP_PCIE=m
++CONFIG_PHY_ROCKCHIP_PCIE=y
+ CONFIG_PHY_ROCKCHIP_TYPEC=y
+ CONFIG_PHY_UNIPHIER_USB2=y
+ CONFIG_PHY_UNIPHIER_USB3=y
+-- 
+2.7.4
+

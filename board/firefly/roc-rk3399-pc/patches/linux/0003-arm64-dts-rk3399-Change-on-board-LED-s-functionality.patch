@@ -1,0 +1,41 @@
+From 221fc877e9fd2a77fe544d99e33a3056aaf1dd6d Mon Sep 17 00:00:00 2001
+From: Suniel Mahesh <sunil@amarulasolutions.com>
+Date: Mon, 8 Jun 2020 19:13:55 +0530
+Subject: [PATCH] arm64: dts: rk3399: Change on-board LED's functionality.
+
+roc-rk3399-pc has an on-board red led, this is binded to mmc1 as
+the default trigger. To indicate board in full power mode, assign
+linux default trigger to always on. Bind the yellow led to mmc1, to
+indicate disk activity
+
+Signed-off-by: Suniel Mahesh <sunil@amarulasolutions.com>
+---
+ arch/arm64/boot/dts/rockchip/rk3399-roc-pc.dtsi | 7 +++----
+ 1 file changed, 3 insertions(+), 4 deletions(-)
+
+diff --git a/arch/arm64/boot/dts/rockchip/rk3399-roc-pc.dtsi b/arch/arm64/boot/dts/rockchip/rk3399-roc-pc.dtsi
+index 19d12bd..7a00f92 100644
+--- a/arch/arm64/boot/dts/rockchip/rk3399-roc-pc.dtsi
++++ b/arch/arm64/boot/dts/rockchip/rk3399-roc-pc.dtsi
+@@ -66,15 +66,14 @@
+ 		work-led {
+ 			label = "green:work";
+ 			gpios = <&gpio2 RK_PD3 GPIO_ACTIVE_HIGH>;
+-			default-state = "on";
+-			linux,default-trigger = "heartbeat";
++			default-state = "off";
++			linux,default-trigger = "mmc1";
+ 		};
+ 
+ 		diy-led {
+ 			label = "red:diy";
+ 			gpios = <&gpio0 RK_PB5 GPIO_ACTIVE_HIGH>;
+-			default-state = "off";
+-			linux,default-trigger = "mmc1";
++			linux,default-trigger = "default-on";
+ 		};
+ 
+ 		yellow-led {
+-- 
+2.7.4
+
