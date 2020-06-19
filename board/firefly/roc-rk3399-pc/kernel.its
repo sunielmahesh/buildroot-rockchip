@@ -17,7 +17,7 @@
 
 		fdt@0 {
 			description = "ROC-RK3399-PC Devicetree blob";
-			data = /incbin/("./rk3399-roc-pc.dtb");
+			data = /incbin/("./rk3399-roc-pc-mezzanine.dtb");
 			type = "flat_dt";
 			arch = "arm64";
 			compression = "none";
